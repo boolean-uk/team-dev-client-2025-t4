@@ -15,10 +15,10 @@ const App = () => {
       <AuthProvider>
         <ModalProvider>
           <Routes>
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route path="loading" element={<Loading />} />
-            <Route path="verification" element={<Verification />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/loading" element={<Loading />} />
+            <Route path="/verification" element={<Verification />} />
 
             <Route
               index
@@ -29,7 +29,7 @@ const App = () => {
               }
             />
             <Route
-              path="welcome"
+              path="/welcome"
               element={
                 <ProtectedRoute disabledNav={true}>
                   <Welcome />
