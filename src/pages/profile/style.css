@@ -1,0 +1,25 @@
+.profile-container {
+  padding: 1em;
+  background-color: white;
+  margin: 1em;
+  border-radius: 1.5em;
+  grid-column: 2 / span 2;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  align-items: center;
+}
+
+.profile-header-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr 1fr 0.5fr;
+}
