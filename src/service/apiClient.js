@@ -43,7 +43,6 @@ async function request(method, endpoint, data, auth = true) {
   }
 
   if (auth) {
-    // eslint-disable-next-line dot-notation
     opts.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
   }
 
