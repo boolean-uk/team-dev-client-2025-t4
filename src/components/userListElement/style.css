@@ -3,11 +3,18 @@
     display: grid;
     row-gap: 20px;
   }
+
+  .user-container {
+    background: white;
+    padding: 10px;
+    width: 100%;
+  }
   
   .user-details {
     display: grid;
     grid-template-columns: 56px auto 48px;
     column-gap: 20px;
+    padding-top: 0px;
   }
   
   .user-name {

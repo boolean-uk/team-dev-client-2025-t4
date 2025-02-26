@@ -1,6 +1,5 @@
 import "./style.css";
 import useModal from '../../hooks/useModal';
-import Card from '../card';
 import ProfileCircle from '../profileCircle';
 
 const UserListElement = ({ user }) => {
@@ -19,13 +18,13 @@ const UserListElement = ({ user }) => {
   };
 
   return (
-    <Card>
+    <div className="user-container">
       <article className="user">
         <section className="user-details">
           <ProfileCircle initials={userInitials} />
 
           <div className="user-name">
-            <p>{user.firstName} {user.lastName}</p>
+            <h4>{user.firstName} {user.lastName}</h4>
           </div>
 
           <div className="edit-icon">
@@ -33,7 +32,7 @@ const UserListElement = ({ user }) => {
           </div>
         </section>
       </article>
-    </Card>
+    </div>
   );
 }
 
