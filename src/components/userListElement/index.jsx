@@ -6,8 +6,6 @@ import ProfileCircle from '../profileCircle';
 const UserListElement = ({ user }) => {
   const { openModal, setModal } = useModal();
 
-  //const userInitials = user.name.match(/\b(\w)/g);
-
   if (!user.firstName || !user.lastName) {
     user.firstName = "Navn";
     user.lastName = "Navnesen";
