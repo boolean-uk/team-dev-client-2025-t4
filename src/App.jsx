@@ -38,8 +38,23 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
-            <Route path="/profile/:id" element={<Profile />} />
-            <Route path="/cohort/:id" element={<Cohort />} />
+            <Route
+              path="/profile/:id"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              } 
+            />
+            <Route
+              path="/cohort/:id"
+              element=
+              {
+                <ProtectedRoute>
+                  <Cohort />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </ModalProvider>
       </AuthProvider>
