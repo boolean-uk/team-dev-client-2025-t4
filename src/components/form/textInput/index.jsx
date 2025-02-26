@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const TextInput = ({ value, onChange, name, label, icon, type = 'text' }) => {
+const TextInput = ({ value, onChange, name, label, icon, isDisabled = false, type = 'text' }) => {
   const [input, setInput] = useState('');
   const [showpassword, setShowpassword] = useState(false);
   if (type === 'password') {
@@ -15,6 +15,7 @@ const TextInput = ({ value, onChange, name, label, icon, type = 'text' }) => {
             onChange(e);
             setInput(e.target.value);
           }}
+          disabled={isDisabled}
         />
         {showpassword && <input type="text" name={name} value={input} className="passwordreveal" />}
         <button
@@ -23,6 +24,7 @@ const TextInput = ({ value, onChange, name, label, icon, type = 'text' }) => {
             e.preventDefault();
             setShowpassword(!showpassword);
           }}
+          disabled={isDisabled}
         >
           <EyeLogo />
         </button>
@@ -38,6 +40,7 @@ const TextInput = ({ value, onChange, name, label, icon, type = 'text' }) => {
           value={value}
           onChange={onChange}
           className={icon && 'input-has-icon'}
+          disabled={isDisabled}
         />
         {icon && <span className="input-icon">{icon}</span>}
       </div>
