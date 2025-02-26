@@ -8,5 +8,9 @@ export default defineConfig({
   },
   esbuild: {
     jsx: 'automatic'
+  },
+  test: {
+    globals: true, // Enables global functions like `describe`, `it`, etc.
+    environment: 'jsdom' // Simulates a browser-like environment
   }
 });
