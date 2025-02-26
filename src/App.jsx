@@ -8,6 +8,8 @@ import Verification from './pages/verification';
 import { AuthProvider, ProtectedRoute } from './context/auth';
 import { ModalProvider } from './context/modal';
 import Welcome from './pages/welcome';
+import Profile from './pages/profile';
+import Cohort from './pages/cohort';
 
 const App = () => {
   return (
@@ -36,6 +38,8 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+            <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/cohort/:id" element={<Cohort />} />
           </Routes>
         </ModalProvider>
       </AuthProvider>
