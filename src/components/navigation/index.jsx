@@ -22,13 +22,13 @@ const Navigation = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/">
+          <NavLink to={`/profile/${1}`}> {/*TODO: add user id*/}
             <ProfileIcon />
             <p>Profile</p>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/">
+          <NavLink to={`/cohort/${1}`}> {/*TODO: add user id*/}
             <CohortIcon />
             <p>Cohort</p>
           </NavLink>
