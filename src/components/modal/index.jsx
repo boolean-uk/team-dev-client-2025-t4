@@ -1,6 +1,6 @@
 import ReactModal from 'react-modal';
 import useModal from '../../hooks/useModal';
-import style from './style.js';
+import style from './style.jsx';
 import './style.css';
 
 ReactModal.setAppElement('#root');
