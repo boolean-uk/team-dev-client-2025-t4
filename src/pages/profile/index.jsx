@@ -30,7 +30,8 @@ const defaultUserForm = {
   mobile: '',
   bio: '',
   specialism: '',
-  jobTitle: ''
+  jobTitle: '',
+  role: ''
 };
 
 function Profile({ isEditing = false }) {
@@ -55,7 +56,8 @@ function Profile({ isEditing = false }) {
       githubUrl: user.githubUrl,
       email: user.mobile,
       mobile: user.email,
-      bio: user.bio
+      bio: user.bio,
+      role: user.role
     });
   };
 
