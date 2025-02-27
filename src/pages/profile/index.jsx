@@ -7,6 +7,7 @@ import Bio from '../../components/bio';
 import './style.css';
 import BasicInfoForm from '../../components/basicInfoForm';
 import TrainingInfoForm from '../../components/trainingInfoForm';
+import ProfessionalInfoForm from '../../components/professionalInfoForm';
 
 const userObj = {
   firstName: '',
@@ -27,11 +28,13 @@ const defaultUserForm = {
   githubUrl: '',
   email: '',
   mobile: '',
-  bio: ''
+  bio: '',
+  specialism: '',
+  jobTitle: ''
 };
 
 function Profile({ isEditing = false }) {
-  // const { user } = useContext(UserContext)
+  // const { user } = useContext(UserContext) // TODO: Actually fetch user data from either backend or a user context instead of using mock data.
   const user = userData.user;
   const navigate = useNavigate();
   const [userForm, setUserForm] = useState({ ...defaultUserForm });
@@ -39,20 +42,13 @@ function Profile({ isEditing = false }) {
   if (!user) {
     return <div>Loading user...</div>;
   }
-  // id: 1,
-  // email: 'test@email.com',
-  // cohortId: 1,
-  // role: 'STUDENT',
-  // firstName: 'Joe',
-  // lastName: 'Bloggs',
-  // bio: 'Lorem ipsum dolor sit amet.',
-  // githubUrl: 'https://github.com/vherus'
   useEffect(() => {
     resetForm();
   }, []);
 
   const resetForm = () => {
     setUserForm({
+      ...defaultUserForm,
       firstName: user.firstName,
       lastName: user.lastName,
       username: user.username,
@@ -66,9 +62,9 @@ function Profile({ isEditing = false }) {
   const handleUpdate = (event) => {
     const { name, value } = event.target;
     setUserForm((prevFormData) => ({
-        ...prevFormData,
-        [name]: value,
-      }));
+      ...prevFormData,
+      [name]: value
+    }));
   };
 
   const toggleEdit = (event) => {
@@ -100,6 +96,19 @@ function Profile({ isEditing = false }) {
             handleChange={handleUpdate}
             isDisabled={true}
           />
+          {user.role.toUpperCase() == 'TEACHER' ? (
+            <ProfessionalInfoForm
+              userData={user}
+              userProfileForm={userForm}
+              handleChange={handleUpdate}
+              isDisabled={!isEditing}
+            />
+          ) : (
+            <button disabled={isEditing} onClick={toggleEdit}>
+              Hello world!
+            </button>
+          )}
+
           <button disabled={isEditing} onClick={toggleEdit}>
             Hello world!
           </button>
