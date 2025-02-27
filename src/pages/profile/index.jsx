@@ -8,6 +8,7 @@ import './style.css';
 import BasicInfoForm from '../../components/basicInfoForm';
 import TrainingInfoForm from '../../components/trainingInfoForm';
 import ProfessionalInfoForm from '../../components/professionalInfoForm';
+import ContactInfoForm from '../../components/ContactInfoForm';
 
 const userObj = {
   firstName: '',
@@ -108,13 +109,16 @@ function Profile({ isEditing = false }) {
               isDisabled={true}
             />
           )}
-
-          <button disabled={isEditing} onClick={toggleEdit}>
-            Hello world!
-          </button>
+          <ContactInfoForm
+            userData={user}
+            userProfileForm={userForm}
+            handleChange={handleUpdate}
+            isDisabled={!isEditing}
+          />
           <Bio userData={userForm} handleUpdate={handleUpdate} isEditMode={isEditing}></Bio>
+          <hr className="divider" />
           <small>* Required</small>
-          <div>
+          <div className="profile-edit-buttons">
             {isEditing ? (
               <>
                 <button

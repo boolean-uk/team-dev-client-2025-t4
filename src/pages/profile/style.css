@@ -7,6 +7,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 1em;
+  align-content: start;
 }
 
 .profile-header {
@@ -24,16 +25,26 @@
 .profile-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 2fr 1fr 0.5fr;
+  grid-template-rows: 2fr 1fr 0.15fr 0.5fr;
   gap: 1em;
+  align-content: start;
 }
 
 .divider {
   border: none;
   border-top: 1px solid lightgray;
   margin: 1em 0;
+  grid-column: 1 / -1;
+  align-self: center;
 }
 
 .profile-form .divider {
   grid-column: 1 / span 2;
+}
+
+.profile-edit-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  gap: 1em;
 }

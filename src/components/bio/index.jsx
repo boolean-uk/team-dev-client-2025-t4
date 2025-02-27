@@ -1,24 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './style.css';
 
 const Bio = ({ userData, handleUpdate, isEditMode }) => {
-  const [bioText, setBioText] = useState(userData.bio || '');
+  const charLimit = 300;
+
+  const [bioText, setBioText] = useState('');
+
+  useEffect(() => {
+    setBioText(userData.bio);
+  }, [userData.bio]);
+
   const onChange = (e) => {
     const inputText = e.target.value;
     // Limit the input to 300 characters
     if (inputText.length <= 300) {
-      setBioText(inputText)
+      setBioText(inputText);
       handleUpdate(e);
     }
   };
 
   return (
-    <div>
-      <h1 className="credentials-title h3">Bio</h1>
+    <div className="basic-info-form">
+      <h4>Bio</h4>
       <section>
-        <small className="bio-smalltext">Bio</small>
+        <label htmlFor="bio">Bio</label>
         <textarea
-          name='bio'
+          name="bio"
           onChange={onChange}
           value={bioText}
           placeholder="Tell us about yourself, your professional and educational highlights to date..."
@@ -26,8 +33,8 @@ const Bio = ({ userData, handleUpdate, isEditMode }) => {
           readOnly={!isEditMode} // Make textarea read-only when not in edit mode
         />
         {isEditMode && (
-          <small className={`char-limit ${bioText.length === 300 ? 'limit-reached' : ''}`}>
-            {bioText.length}/300 characters
+          <small className={`char-limit ${bioText.length === charLimit ? 'limit-reached' : ''}`}>
+            {bioText.length}/{charLimit} characters
           </small>
         )}
       </section>
