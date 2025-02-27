@@ -6,6 +6,7 @@ import Bio from '../../components/bio';
 
 import './style.css';
 import BasicInfoForm from '../../components/basicInfoForm';
+import ProfessionalInfoForm from '../../components/professionalInfoForm';
 
 const userObj = {
   firstName: '',
@@ -26,7 +27,9 @@ const defaultUserForm = {
   githubUrl: '',
   email: '',
   mobile: '',
-  bio: ''
+  bio: '',
+  specialism: '',
+  jobTitle: ''
 };
 
 function Profile({ isEditing = false }) {
@@ -65,9 +68,9 @@ function Profile({ isEditing = false }) {
   const handleUpdate = (event) => {
     const { name, value } = event.target;
     setUserForm((prevFormData) => ({
-        ...prevFormData,
-        [name]: value,
-      }));
+      ...prevFormData,
+      [name]: value
+    }));
   };
 
   const toggleEdit = (event) => {
@@ -93,9 +96,18 @@ function Profile({ isEditing = false }) {
             handleChange={handleUpdate}
             isDisabled={!isEditing}
           />
-          <button disabled={isEditing} onClick={toggleEdit}>
-            Hello world!
-          </button>
+          {user.role.toUpperCase() == 'TEACHER' ? (
+            <ProfessionalInfoForm
+              userData={user}
+              userProfileForm={userForm}
+              handleChange={handleUpdate}
+              isDisabled={!isEditing}
+            />
+          ) : (
+            <button disabled={isEditing} onClick={toggleEdit}>
+              Hello world!
+            </button>
+          )}
           <button disabled={isEditing} onClick={toggleEdit}>
             Hello world!
           </button>
