@@ -55,8 +55,8 @@ function Profile({ isEditing = false }) {
       lastName: user.lastName,
       username: user.username,
       githubUrl: user.githubUrl,
-      email: user.mobile,
-      mobile: user.email,
+      email: user.email,
+      mobile: user.mobile,
       bio: user.bio,
       role: user.role
     });
