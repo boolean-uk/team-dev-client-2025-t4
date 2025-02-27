@@ -90,12 +90,7 @@ function Profile({ isEditing = false }) {
             handleChange={handleUpdate}
             isDisabled={!isEditing}
           />
-          <TrainingInfoForm
-            cohortData={cohortData}
-            userProfileForm={userForm}
-            handleChange={handleUpdate}
-            isDisabled={true}
-          />
+
           {user.role.toUpperCase() == 'TEACHER' ? (
             <ProfessionalInfoForm
               userData={user}
@@ -104,9 +99,12 @@ function Profile({ isEditing = false }) {
               isDisabled={!isEditing}
             />
           ) : (
-            <button disabled={isEditing} onClick={toggleEdit}>
-              Hello world!
-            </button>
+            <TrainingInfoForm
+              cohortData={cohortData}
+              userProfileForm={userForm}
+              handleChange={handleUpdate}
+              isDisabled={true}
+            />
           )}
 
           <button disabled={isEditing} onClick={toggleEdit}>
