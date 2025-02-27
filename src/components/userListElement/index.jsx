@@ -27,7 +27,6 @@ const UserListElement = ({ user }) => {
     openModal();
   };
 
-  console.log(user);
   return (
     <div className="user-container">
       <article className="user">
