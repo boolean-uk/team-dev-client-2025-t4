@@ -4,7 +4,7 @@ import TextInput from '../form/textInput';
 
 import './style.css';
 
-function ContactInfoForm({ userProfileForm, handleChange, isDisabled }) {
+function ContactInfoForm({ userProfileForm, handleChange, isDisabled, canChangePassword }) {
   // TODO: Handle Change password button click
 
   const navigate = useNavigate();
@@ -31,9 +31,11 @@ function ContactInfoForm({ userProfileForm, handleChange, isDisabled }) {
         name={'mobile'}
         isDisabled={isDisabled}
       />
-      <div className="wide">
-        <Button classes={'green wide'} text={'Change password'} onClick={changePassword} />
-      </div>
+      {Boolean(canChangePassword) && (
+        <div className="wide">
+          <Button classes={'green wide'} text={'Change password'} onClick={changePassword} />
+        </div>
+      )}
     </div>
   );
 }
