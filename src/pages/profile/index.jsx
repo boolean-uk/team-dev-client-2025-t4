@@ -6,7 +6,7 @@ import Bio from '../../components/bio';
 
 import './style.css';
 
-const uerObj = {
+const userObj = {
   firstName: '',
   lastName: '',
   email: '',
@@ -28,7 +28,7 @@ const defaultUserForm = {
   bio: ''
 };
 
-function Profile({ isEditing = true }) {
+function Profile({ isEditing = false }) {
   // const { user } = useContext(UserContext)
 
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ function Profile({ isEditing = true }) {
       lastName: user.lastName,
       username: user.username,
       githubUrl: user.githubUrl,
-      email: user.email,
+      email: user.mobile,
       mobile: user.email,
       bio: user.bio
     });

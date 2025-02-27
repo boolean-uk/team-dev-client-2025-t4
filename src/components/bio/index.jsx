@@ -18,6 +18,7 @@ const Bio = ({ userData, handleUpdate, isEditMode }) => {
       <section>
         <small className="bio-smalltext">Bio</small>
         <textarea
+          name='bio'
           onChange={onChange}
           value={bioText}
           placeholder="Tell us about yourself, your professional and educational highlights to date..."
