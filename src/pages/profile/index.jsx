@@ -1,14 +1,17 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { user as userData, cohort as cohortData } from '../../service/mockData';
+import useModal from '../../hooks/useModal';
 import ProfileCircle from '../../components/profileCircle';
 import Bio from '../../components/bio';
+import Toast from '../../components/toast';
 
 import './style.css';
 import BasicInfoForm from '../../components/basicInfoForm';
 import TrainingInfoForm from '../../components/trainingInfoForm';
 import ProfessionalInfoForm from '../../components/professionalInfoForm';
 import ContactInfoForm from '../../components/ContactInfoForm';
+import SaveChangesProfileModal from '../../components/saveChangesProfileModal';
 
 const userObj = {
   firstName: '',
@@ -74,6 +77,33 @@ function Profile({ isEditing = false }) {
     event.preventDefault();
     navigate('edit'); // /profile/<id>/edit
   };
+
+  const [toastData, setToastData] = useState(null); // Use null to indicate no toast
+
+  const toggleToast = (saved) => {
+    if (saved) {
+      setToastData({ text: 'Profile saved', linkText: 'Edit' }); // Show the toast with data
+      setTimeout(() => {
+        setToastData(null); // Hide the toast after 2 seconds
+      }, 3000);
+    }
+    else{
+      setToastData({ text: 'Changes discarded', linkText: 'Undo' }); // Show the toast with data
+      setTimeout(() => {
+        setToastData(null); // Hide the toast after 2 seconds
+      }, 3000);
+    }
+  };
+
+  const { openModal, setModal } = useModal();
+  
+  const showModal = () => {
+    setModal('Save changes to profile?', <SaveChangesProfileModal toggleToast={toggleToast}/>); 
+
+    // Open the modal!
+    openModal();
+  };
+
   return (
     <>
       <div className="profile-container">
@@ -85,7 +115,7 @@ function Profile({ isEditing = false }) {
           </div>
         </div>
         <hr className="divider" />
-        <form className="profile-form">
+        <form className="profile-form" onSubmit={(e) => {e.preventDefault()}}>
           {/* Components go here! */}
           <BasicInfoForm
             userData={user}
@@ -134,12 +164,18 @@ function Profile({ isEditing = false }) {
                 <button className="blue">Save</button>
               </>
             ) : (
-              <button className="blue" onClick={toggleEdit}>
+              <>
+               <button className="blue" onClick={toggleEdit}>
                 Edit
               </button>
+              <button className="blue" onClick={showModal}>
+              Save
+            </button>
+              </>
             )}
           </div>
         </form>
+        {toastData && <Toast text={toastData.text} linkText={toastData.linkText} />}
       </div>
     </>
   );
