@@ -1,7 +1,7 @@
 import Card from "../card";
 import {useState, useEffect} from 'react';
 import { getUsers } from '../../service/apiClient';
-import UserListElement from '../userListElement';
+import UserListElement from "../UserListElement";
 import "./style.css";
 
 
