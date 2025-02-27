@@ -5,10 +5,11 @@ import { SimpleProfileCircle } from '../profileCircle';
 import './style.css';
 
 function BasicInfoForm({ userData, userProfileForm, handleChange, isDisabled }) {
+  // TODO: Add support for image submission
   return (
-    <>
+    <div className="basic-info-form">
       <h4>Basic info</h4>
-      <div>
+      <div className="headshot">
         <label>Photo</label>
         <div className="profile-image">
           <SimpleProfileCircle initials={getInitials(userData)} />
@@ -38,13 +39,13 @@ function BasicInfoForm({ userData, userProfileForm, handleChange, isDisabled }) 
         isDisabled={isDisabled}
       />
       <TextInput
-        label={'GitHub Username*'}
+        label={'GitHub Url*'}
         onChange={handleChange}
-        value={userProfileForm.githubUsername}
-        name={'githubUsername'}
+        value={userProfileForm.githubUrl}
+        name={'githubUrl'}
         isDisabled={isDisabled}
       />
-    </>
+    </div>
   );
 }
 

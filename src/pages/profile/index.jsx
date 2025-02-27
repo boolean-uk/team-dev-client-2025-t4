@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { user } from '../../service/mockData';
+import { user as userData } from '../../service/mockData';
 import ProfileCircle from '../../components/profileCircle';
 
 import './style.css';
+import BasicInfoForm from '../../components/basicInfoForm';
 
 const uerObj = {
   firstName: '',
@@ -29,7 +30,7 @@ const defaultUserForm = {
 
 function Profile({ isEditing = false }) {
   // const { user } = useContext(UserContext)
-
+  const user = userData.user;
   const navigate = useNavigate();
   const [userForm, setUserForm] = useState({ ...defaultUserForm });
 
@@ -62,13 +63,16 @@ function Profile({ isEditing = false }) {
 
   const handleUpdate = (event) => {
     const { name, value } = event.target;
-    setFormData({ ...userForm, [name]: value });
+    setUserForm({ ...userForm, [name]: value });
   };
 
   const toggleEdit = (event) => {
     event.preventDefault();
     navigate('edit'); // /profile/<id>/edit
   };
+
+  console.log(userForm);
+
   return (
     <>
       <div className="profile-container">
@@ -79,11 +83,15 @@ function Profile({ isEditing = false }) {
             <small>Role</small>
           </div>
         </div>
+        <hr className="divider" />
         <form className="profile-form">
           {/* Components go here! */}
-          <button disabled={isEditing} onClick={toggleEdit}>
-            Hello world!
-          </button>
+          <BasicInfoForm
+            userData={user}
+            userProfileForm={userForm}
+            handleChange={handleUpdate}
+            isDisabled={!isEditing}
+          />
           <button disabled={isEditing} onClick={toggleEdit}>
             Hello world!
           </button>
@@ -103,7 +111,7 @@ function Profile({ isEditing = false }) {
                     resetForm();
                     navigate(-1);
                   }}
-                  className="red"
+                  className="offwhite"
                 >
                   Cancel
                 </button>
