@@ -12,6 +12,7 @@ import ContactInfoForm from '../../components/ContactInfoForm';
 import useAuth from '../../hooks/useAuth';
 import { jwtDecode } from 'jwt-decode';
 import { getUser } from '../../service/apiClient';
+import { getInitials } from '../../service/userServices';
 
 const userObj = {
   firstName: '',
@@ -125,7 +126,7 @@ function Profile({ isEditing = false }) {
     <>
       <div className="profile-container">
         <div className="profile-header">
-          <ProfileCircle initials={'RR'} />
+          <ProfileCircle initials={getInitials(user)} />
           <div className="profile-header-title">
             <h4>
               {user.firstName} {user.lastName}
