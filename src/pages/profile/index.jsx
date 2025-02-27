@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { user as userData } from '../../service/mockData';
+import { user as userData, cohort as cohortData } from '../../service/mockData';
 import ProfileCircle from '../../components/profileCircle';
 import Bio from '../../components/bio';
 
 import './style.css';
 import BasicInfoForm from '../../components/basicInfoForm';
+import TrainingInfoForm from '../../components/trainingInfoForm';
 
 const userObj = {
   firstName: '',
@@ -93,9 +94,12 @@ function Profile({ isEditing = false }) {
             handleChange={handleUpdate}
             isDisabled={!isEditing}
           />
-          <button disabled={isEditing} onClick={toggleEdit}>
-            Hello world!
-          </button>
+          <TrainingInfoForm
+            cohortData={cohortData}
+            userProfileForm={userForm}
+            handleChange={handleUpdate}
+            isDisabled={true}
+          />
           <button disabled={isEditing} onClick={toggleEdit}>
             Hello world!
           </button>

@@ -12,6 +12,14 @@ const user = {
   }
 };
 
+const cohort = {
+  id: 4,
+  specialism: 'Software Developer',
+  cohortName: 'Cohort 4',
+  startDate: 'January 2025',
+  endDate: 'June 2025'
+}
+
 const posts = [
   {
     id: 1,
@@ -61,4 +69,4 @@ const posts = [
   }
 ];
 
-export { user, posts };
+export { user, posts, cohort };
