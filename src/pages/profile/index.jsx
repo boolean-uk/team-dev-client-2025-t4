@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { user as userData, cohort as cohortData } from '../../service/mockData';
+import useModal from '../../hooks/useModal';
 import ProfileCircle from '../../components/profileCircle';
 import Bio from '../../components/bio';
+import Toast from '../../components/toast';
 
 import './style.css';
 import BasicInfoForm from '../../components/basicInfoForm';
@@ -13,6 +15,7 @@ import useAuth from '../../hooks/useAuth';
 import { jwtDecode } from 'jwt-decode';
 import { getUser } from '../../service/apiClient';
 import { getInitials } from '../../service/userServices';
+import SaveChangesProfileModal from '../../components/saveChangesProfileModal';
 
 const userObj = {
   firstName: '',
@@ -48,6 +51,8 @@ function Profile({ isEditing = false }) {
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
   const [userForm, setUserForm] = useState({ ...defaultUserForm });
+  const { openModal, setModal } = useModal();
+  const [toastData, setToastData] = useState(null); // Use null to indicate no toast
 
   useEffect(() => {
     getUser(id).then(setUser);
@@ -93,6 +98,28 @@ function Profile({ isEditing = false }) {
     navigate('edit'); // /profile/<id>/edit
   };
 
+  const toggleToast = (saved) => {
+    if (saved) {
+      setToastData({ text: 'Profile saved', linkText: 'Edit' }); // Show the toast with data
+      setTimeout(() => {
+        setToastData(null); // Hide the toast after 2 seconds
+      }, 3000);
+    }
+    else{
+      setToastData({ text: 'Changes discarded', linkText: 'Undo' }); // Show the toast with data
+      setTimeout(() => {
+        setToastData(null); // Hide the toast after 2 seconds
+      }, 3000);
+    }
+  };
+  
+  const showModal = () => {
+    setModal('Save changes to profile?', <SaveChangesProfileModal toggleToast={toggleToast}/>); 
+
+    // Open the modal!
+    openModal();
+  };
+
   function renderEditButtons() {
     if (!canEdit) return null;
 
@@ -110,7 +137,7 @@ function Profile({ isEditing = false }) {
             >
               Cancel
             </button>
-            <button className="blue">Save</button>
+            <button className="blue" onClick={showModal}>Save</button>
           </>
         ) : (
           <button className="blue" onClick={toggleEdit}>
@@ -134,7 +161,9 @@ function Profile({ isEditing = false }) {
           </div>
         </div>
         <hr className="divider" />
-        <form className="profile-form">
+        
+          {/* Components go here! */}
+          <form className="profile-form" onSubmit={(e) => {e.preventDefault()}}>
           <BasicInfoForm
             userData={user}
             userProfileForm={userForm}
@@ -169,6 +198,7 @@ function Profile({ isEditing = false }) {
           <small>* Required</small>
           {renderEditButtons()}
         </form>
+        {toastData && <Toast text={toastData.text} linkText={toastData.linkText} />}
       </div>
     </>
   );
