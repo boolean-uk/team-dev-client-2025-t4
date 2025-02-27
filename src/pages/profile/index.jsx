@@ -33,7 +33,7 @@ const defaultUserForm = {
 };
 
 function Profile({ isEditing = false }) {
-  // const { user } = useContext(UserContext)
+  // const { user } = useContext(UserContext) // TODO: Actually fetch user data from either backend or a user context instead of using mock data.
   const user = userData.user;
   const navigate = useNavigate();
   const [userForm, setUserForm] = useState({ ...defaultUserForm });
@@ -41,20 +41,13 @@ function Profile({ isEditing = false }) {
   if (!user) {
     return <div>Loading user...</div>;
   }
-  // id: 1,
-  // email: 'test@email.com',
-  // cohortId: 1,
-  // role: 'STUDENT',
-  // firstName: 'Joe',
-  // lastName: 'Bloggs',
-  // bio: 'Lorem ipsum dolor sit amet.',
-  // githubUrl: 'https://github.com/vherus'
   useEffect(() => {
     resetForm();
   }, []);
 
   const resetForm = () => {
     setUserForm({
+      ...defaultUserForm,
       firstName: user.firstName,
       lastName: user.lastName,
       username: user.username,
