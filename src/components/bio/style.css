@@ -11,12 +11,6 @@
   color: red;
 }
 
-.bio-smalltext {
-  color: #666;
-  font-size: 12px;
-  margin-left: 10px;
-}
-
 .bio-title {
   margin-bottom: 4%;
 }
@@ -26,14 +20,6 @@ textarea {
   height: 256px;
   resize: none;
   border-radius: 8px;
-  padding: 16px;
-  margin-top: 5px;
+  padding: 1em;
+  font-size: inherit;
 }
-
-textarea.edit-mode {
-  background-color: var(--color-blue5);
-}
-
-/* textarea:not(.edit-mode) {
-    background-color: transparent;
-  } */

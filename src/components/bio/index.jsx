@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './style.css';
 
 const Bio = ({ userData, handleUpdate, isEditMode }) => {
   const charLimit = 300;
 
-  const [bioText, setBioText] = useState(userData.bio || '');
+  const [bioText, setBioText] = useState('');
+
+  useEffect(() => {
+    setBioText(userData.bio);
+  }, [userData.bio]);
+
   const onChange = (e) => {
     const inputText = e.target.value;
     // Limit the input to 300 characters
