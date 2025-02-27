@@ -18,7 +18,7 @@ const userObj = {
   firstName: '',
   lastName: '',
   email: '',
-  bio: '',
+  biography: '',
   githubUrl: '',
   password: '',
   cohortId: '',
@@ -33,7 +33,7 @@ const defaultUserForm = {
   githubUrl: '',
   email: '',
   mobile: '',
-  bio: '',
+  biography: '',
   specialism: '',
   jobTitle: '',
   role: ''
@@ -50,7 +50,7 @@ function Profile({ isEditing = false }) {
   const [userForm, setUserForm] = useState({ ...defaultUserForm });
 
   useEffect(() => {
-    // Fetch user profile based on ID
+    getUser(id).then(setUser);
   }, [id]);
 
   useEffect(() => {
@@ -66,7 +66,7 @@ function Profile({ isEditing = false }) {
       githubUrl: user.githubUrl,
       email: user.email,
       mobile: user.mobile,
-      bio: user.bio,
+      biography: user.biography,
       role: user.role
     });
   };
@@ -74,7 +74,6 @@ function Profile({ isEditing = false }) {
     resetForm();
   }, [user]);
 
-  // if (!user) {
   if (!user || !currentUser) {
     return <div>Loading user...</div>;
   }
@@ -143,7 +142,7 @@ function Profile({ isEditing = false }) {
             isDisabled={!isEditing}
           />
 
-          {user.role.toUpperCase() == 'TEACHER' ? (
+          {user.role == 'TEACHER' ? (
             <ProfessionalInfoForm
               userData={user}
               userProfileForm={userForm}
@@ -155,7 +154,7 @@ function Profile({ isEditing = false }) {
               cohortData={cohortData}
               userProfileForm={userForm}
               handleChange={handleUpdate}
-              isDisabled={true}
+              isDisabled={!((currentUser.role == 'TEACHER') & isEditing)}
             />
           )}
           <ContactInfoForm

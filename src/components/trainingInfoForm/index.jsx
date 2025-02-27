@@ -15,14 +15,14 @@ function TrainingInfoForm({ cohortData, userProfileForm, handleChange, isDisable
         onChange={handleChange}
         value={userProfileForm.role}
         name={'role'}
-        isLocked={isDisabled}
+        isLocked={true}
       />
       <LockedTextInput
         label={'Specialism*'}
         onChange={handleChange}
         value={cohortData.specialism}
         name={'specialism'}
-        isLocked={isDisabled}
+        isLocked={true}
       />
       <LockedTextInput
         label={'Cohort*'}
@@ -36,14 +36,14 @@ function TrainingInfoForm({ cohortData, userProfileForm, handleChange, isDisable
         onChange={handleChange}
         value={cohortData.startDate}
         name={'startDate'}
-        isLocked={isDisabled}
+        isLocked={true}
       />
-       <LockedTextInput
+      <LockedTextInput
         label={'End Date*'}
         onChange={handleChange}
         value={cohortData.endDate}
         name={'endDate'}
-        isLocked={isDisabled}
+        isLocked={true}
       />
     </div>
   );

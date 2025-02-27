@@ -7,8 +7,10 @@ const Bio = ({ userData, handleUpdate, isEditMode }) => {
   const [bioText, setBioText] = useState('');
 
   useEffect(() => {
-    setBioText(userData.bio);
-  }, [userData.bio]);
+    if (userData.biography) {
+      setBioText(userData.biography);
+    }
+  }, [userData.biography]);
 
   const onChange = (e) => {
     const inputText = e.target.value;
@@ -25,7 +27,7 @@ const Bio = ({ userData, handleUpdate, isEditMode }) => {
       <section>
         <label htmlFor="bio">Bio</label>
         <textarea
-          name="bio"
+          name="biography"
           onChange={onChange}
           value={bioText}
           placeholder="Tell us about yourself, your professional and educational highlights to date..."
@@ -33,7 +35,7 @@ const Bio = ({ userData, handleUpdate, isEditMode }) => {
           readOnly={!isEditMode} // Make textarea read-only when not in edit mode
         />
         {isEditMode && (
-          <small className={`char-limit ${bioText.length === charLimit ? 'limit-reached' : ''}`}>
+          <small className={'char-limit' + (bioText.length === charLimit ? 'limit-reached' : '')}>
             {bioText.length}/{charLimit} characters
           </small>
         )}
