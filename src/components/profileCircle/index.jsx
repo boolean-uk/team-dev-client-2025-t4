@@ -24,6 +24,16 @@ const ProfileCircle = ({ initials }) => {
   );
 };
 
+export const SimpleProfileCircle = ({ initials }) => {
+  return (
+    <div className="profile-circle">
+      <div className="profile-icon">
+        <p>{initials}</p>
+      </div>
+    </div>
+  );
+};
+
 const CascadingMenu = () => {
   return (
     <Menu className="profile-circle-menu">

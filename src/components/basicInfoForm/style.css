@@ -1,0 +1,12 @@
+.profile-image {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+}
+
+.basic-info-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2em;
+}
