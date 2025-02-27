@@ -1,12 +1,9 @@
-import MyCohort from "../../components/myCohort";
 import Teachers from "../../components/teachers";
 
 function Cohort() {
     return (
         <>
-            <main>
-                <MyCohort />
-            </main>
+            <div></div>
             <aside>
                 <Teachers />
             </aside>
