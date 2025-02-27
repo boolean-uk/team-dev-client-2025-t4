@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { user as userData } from '../../service/mockData';
+import { user as userData, cohort as cohortData } from '../../service/mockData';
 import ProfileCircle from '../../components/profileCircle';
 import Bio from '../../components/bio';
 
 import './style.css';
 import BasicInfoForm from '../../components/basicInfoForm';
+import TrainingInfoForm from '../../components/trainingInfoForm';
 import ProfessionalInfoForm from '../../components/professionalInfoForm';
 import ContactInfoForm from '../../components/ContactInfoForm';
 
@@ -30,7 +31,8 @@ const defaultUserForm = {
   mobile: '',
   bio: '',
   specialism: '',
-  jobTitle: ''
+  jobTitle: '',
+  role: ''
 };
 
 function Profile({ isEditing = false }) {
@@ -55,7 +57,8 @@ function Profile({ isEditing = false }) {
       githubUrl: user.githubUrl,
       email: user.mobile,
       mobile: user.email,
-      bio: user.bio
+      bio: user.bio,
+      role: user.role
     });
   };
 
@@ -90,6 +93,7 @@ function Profile({ isEditing = false }) {
             handleChange={handleUpdate}
             isDisabled={!isEditing}
           />
+
           {user.role.toUpperCase() == 'TEACHER' ? (
             <ProfessionalInfoForm
               userData={user}
@@ -98,9 +102,12 @@ function Profile({ isEditing = false }) {
               isDisabled={!isEditing}
             />
           ) : (
-            <button disabled={isEditing} onClick={toggleEdit}>
-              Hello world!
-            </button>
+            <TrainingInfoForm
+              cohortData={cohortData}
+              userProfileForm={userForm}
+              handleChange={handleUpdate}
+              isDisabled={true}
+            />
           )}
           <ContactInfoForm
             userData={user}
