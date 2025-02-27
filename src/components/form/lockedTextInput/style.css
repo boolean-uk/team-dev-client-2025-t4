@@ -1,0 +1,12 @@
+.right-aligned-icon {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.right-aligned-icon svg {
+  position: absolute;
+  right: 10px;
+  top: 43%;
+  pointer-events: none;
+}
