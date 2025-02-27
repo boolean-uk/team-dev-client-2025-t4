@@ -2,7 +2,7 @@
     display: grid;
     grid-template-areas:
         "cohortIcon cohortDesc"
-        "cohortIcon cohortTimeframe";
+        "cohortIcon cohortNumber";
     grid-template-columns: 68px auto;
 }
 
@@ -18,10 +18,10 @@
     font-size: larger;
 }
 
-.cohortListElementTimeframe {
-    grid-area: cohortTimeframe;
+.cohortListElementNumber {
+    grid-area: cohortNumber;
 }
 
-.cohortListElementTimeframe > p {
+.cohortListElementNumber > p {
     color: #888;
 }
