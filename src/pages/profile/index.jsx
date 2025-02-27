@@ -2,10 +2,11 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { user } from '../../service/mockData';
 import ProfileCircle from '../../components/profileCircle';
+import Bio from '../../components/bio';
 
 import './style.css';
 
-const uerObj = {
+const userObj = {
   firstName: '',
   lastName: '',
   email: '',
@@ -54,7 +55,7 @@ function Profile({ isEditing = false }) {
       lastName: user.lastName,
       username: user.username,
       githubUrl: user.githubUrl,
-      email: user.email,
+      email: user.mobile,
       mobile: user.email,
       bio: user.bio
     });
@@ -62,7 +63,10 @@ function Profile({ isEditing = false }) {
 
   const handleUpdate = (event) => {
     const { name, value } = event.target;
-    setFormData({ ...userForm, [name]: value });
+    setUserForm((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
   };
 
   const toggleEdit = (event) => {
@@ -90,9 +94,7 @@ function Profile({ isEditing = false }) {
           <button disabled={isEditing} onClick={toggleEdit}>
             Hello world!
           </button>
-          <button disabled={isEditing} onClick={toggleEdit}>
-            Hello world!
-          </button>
+          <Bio userData={userForm} handleUpdate={handleUpdate} isEditMode={isEditing}></Bio>
           <small>* Required</small>
           <div>
             {isEditing ? (
