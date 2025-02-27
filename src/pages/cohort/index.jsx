@@ -1,3 +1,4 @@
+import MyExercises from "../../components/myExercises";
 import Teachers from "../../components/teachers";
 
 function Cohort() {
@@ -6,6 +7,7 @@ function Cohort() {
             <div></div>
             <aside>
                 <Teachers />
+                <MyExercises />
             </aside>
         </>
     )
