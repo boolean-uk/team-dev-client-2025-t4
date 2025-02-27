@@ -1,5 +1,6 @@
 import Card from "../card";
 import Button from "../button";
+import "./style.css";
 
 // Completely hard coded as there's no data for Exercises
 
@@ -9,11 +10,22 @@ const MyExercises = () => {
             <Card>
                 <h2 className="border-bottom">My Exercises</h2>
                 <br/>
-                <section>
-                    <p>Modules: 2/7 completed</p>
-                    <p>Units: 4/10 completed</p>
-                    <p>Exercises: 34/58 completed</p>
-                </section>
+                <section class="stats">
+                <div className="row">
+                    <span>Modules:</span> 
+                    <span>2/7 completed</span>
+                </div>
+                <div className="row">
+                    <span>Units:</span> 
+                    <span>4/10 completed</span>
+                </div>
+                <div className="row">
+                    <span>Exercises:</span> 
+                    <span>34/58 completed</span>
+                </div>
+            </section>
+
+
                 <br/>
                 <section >
                     <Button
