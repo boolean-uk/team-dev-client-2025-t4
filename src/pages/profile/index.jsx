@@ -74,9 +74,6 @@ function Profile({ isEditing = false }) {
     event.preventDefault();
     navigate('edit'); // /profile/<id>/edit
   };
-
-  console.log(userForm);
-
   return (
     <>
       <div className="profile-container">
