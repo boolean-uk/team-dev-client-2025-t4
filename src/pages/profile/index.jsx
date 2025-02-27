@@ -51,6 +51,8 @@ function Profile({ isEditing = false }) {
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
   const [userForm, setUserForm] = useState({ ...defaultUserForm });
+  const { openModal, setModal } = useModal();
+  const [toastData, setToastData] = useState(null); // Use null to indicate no toast
 
   useEffect(() => {
     // Fetch user profile based on ID
@@ -97,6 +99,28 @@ function Profile({ isEditing = false }) {
     navigate('edit'); // /profile/<id>/edit
   };
 
+  const toggleToast = (saved) => {
+    if (saved) {
+      setToastData({ text: 'Profile saved', linkText: 'Edit' }); // Show the toast with data
+      setTimeout(() => {
+        setToastData(null); // Hide the toast after 2 seconds
+      }, 3000);
+    }
+    else{
+      setToastData({ text: 'Changes discarded', linkText: 'Undo' }); // Show the toast with data
+      setTimeout(() => {
+        setToastData(null); // Hide the toast after 2 seconds
+      }, 3000);
+    }
+  };
+  
+  const showModal = () => {
+    setModal('Save changes to profile?', <SaveChangesProfileModal toggleToast={toggleToast}/>); 
+
+    // Open the modal!
+    openModal();
+  };
+
   function renderEditButtons() {
     if (!canEdit) return null;
 
@@ -114,7 +138,7 @@ function Profile({ isEditing = false }) {
             >
               Cancel
             </button>
-            <button className="blue">Save</button>
+            <button className="blue" onClick={showModal}>Save</button>
           </>
         ) : (
           <button className="blue" onClick={toggleEdit}>
@@ -138,9 +162,9 @@ function Profile({ isEditing = false }) {
           </div>
         </div>
         <hr className="divider" />
-        <form className="profile-form" onSubmit={(e) => {e.preventDefault()}}>
+        
           {/* Components go here! */}
-        <form className="profile-form">
+          <form className="profile-form" onSubmit={(e) => {e.preventDefault()}}>
           <BasicInfoForm
             userData={user}
             userProfileForm={userForm}
