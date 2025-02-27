@@ -16,8 +16,9 @@ const UserListElement = ({ user }) => {
   if(user.role === 'TEACHER') {
     isTeacher = true;
 
-    // Currently no endpoint for cohorts(?)
-    cohort = 'Not a memebr of any cohort';
+    // Currently no get endpoint for cohorts.
+    // TODO: Update to when Cohorts are implemented
+    cohort = 'Not affiliated with any cohort';
   }
   const userInitials = `${user.firstName[0] || ''}${user.lastName[0] || ''}`.toUpperCase();
 
