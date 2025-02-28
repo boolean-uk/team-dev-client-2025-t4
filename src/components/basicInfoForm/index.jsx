@@ -12,7 +12,7 @@ function BasicInfoForm({ userData, userProfileForm, handleChange, isDisabled }) 
       <div className="headshot">
         <label>Photo</label>
         <div className="profile-image">
-          <SimpleProfileCircle initials={getInitials(userData)} />
+          <SimpleProfileCircle initials={getInitials(userData.profile)} />
           <p>Add headshot</p>
         </div>
       </div>
