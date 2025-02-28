@@ -1,17 +1,22 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '../button';
 import TextInput from '../form/textInput';
+import ChangePasswordModal from '../changePasswordModal';
+import useModal from '../../hooks/useModal';
 
 import './style.css';
 
 function ContactInfoForm({ userProfileForm, handleChange, isDisabled, canChangePassword }) {
   // TODO: Handle Change password button click
+  const { openModal, setModal } = useModal();
 
   const navigate = useNavigate();
 
   const changePassword = (event) => {
     event.preventDefault();
-    navigate('/change-password'); // Non-existing for now
+    setModal('Change password', <ChangePasswordModal/>); 
+    openModal();
+
   };
 
   return (
