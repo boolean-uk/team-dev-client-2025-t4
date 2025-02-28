@@ -8,7 +8,28 @@
   width: 100%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
+  background-color: #fff; /* Add a background color */
+  position: fixed; /* Position the toast */
+  bottom: 20px; /* Position at the bottom */
+  right: 20px; /* Position from the right */
+  transform: translateX(120%); /* Start off-screen to the right */
+  animation: slideIn 0.5s forwards, fadeOut 0.5s 2.5s forwards; /* Animation */
 }
+
 .toast a {
   text-decoration: none;
+}
+
+/* Slide-in animation from the right */
+@keyframes slideIn {
+  to {
+    transform: translateX(0); /* Slide into view */
+  }
+}
+
+/* Fade-out animation */
+@keyframes fadeOut {
+  to {
+    opacity: 0; /* Fade out */
+  }
 }

@@ -18,6 +18,11 @@ async function getPosts() {
   return res.data.posts;
 }
 
+async function getUser(id) {
+  const res = await get(`users/${id}`);
+  return res.data.user;
+}
+
 async function getUsers() {
   const res = await get('users');
   if (res.status === 401) {
@@ -76,4 +81,4 @@ async function request(method, endpoint, data, auth = true) {
   return response.json();
 }
 
-export { login, getPosts, getUsers, getUsersTest, register, createProfile };
+export { login, getPosts, getUser, getUsers, getUsersTest, register, createProfile };

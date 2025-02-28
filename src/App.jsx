@@ -44,12 +44,19 @@ const App = () => {
                 <ProtectedRoute>
                   <Profile />
                 </ProtectedRoute>
-              } 
+              }
+            />
+            <Route
+              path="/profile/:id/edit"
+              element={
+                <ProtectedRoute>
+                  <Profile isEditing={true} />
+                </ProtectedRoute>
+              }
             />
             <Route
               path="/cohort/:id"
-              element=
-              {
+              element={
                 <ProtectedRoute>
                   <Cohort />
                 </ProtectedRoute>
