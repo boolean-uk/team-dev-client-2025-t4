@@ -42,6 +42,7 @@ function Profile({ isEditing = false }) {
   const { openModal, setModal } = useModal();
   const [toastData, setToastData] = useState(null); // Use null to indicate no toast
 
+  const profile = user.profile;
   useEffect(() => {
     getUser(id).then(setUser);
   }, [id]);
@@ -51,25 +52,35 @@ function Profile({ isEditing = false }) {
   }, [currentUserId]);
 
   const resetForm = () => {
+    let data = {
+      email: user.email,
+      role: user.role
+    };
+    if (user.profile) {
+      data = {
+        ...data,
+        firstName: user.profile?.firstName,
+        lastName: user.profile?.lastName,
+        username: user.profile?.username,
+        githubUrl: user.profile?.githubUrl,
+        mobile: user.profile?.mobile,
+        biography: user.profile.bio
+      };
+    }
     setUserForm({
       ...defaultUserForm,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      username: user.username,
-      githubUrl: user.githubUrl,
-      email: user.email,
-      mobile: user.mobile,
-      biography: user.biography,
-      role: user.role
+      ...data
     });
   };
+
   useEffect(() => {
     resetForm();
   }, [user]);
 
-  if (!user || !currentUser) {
+  if (!user || !currentUser || !profile) {
     return <div>Loading user...</div>;
   }
+
   const canEdit =
     (currentUserId == id) | ((user.role == 'STUDENT') & (currentUser.role == 'TEACHER')) | true;
 
@@ -100,12 +111,13 @@ function Profile({ isEditing = false }) {
     }
   };
 
-  
   const showSaveModal = () => {
-    setModal('Save changes to profile?', <SaveChangesProfileModal toggleToast={toggleToast} resetForm={resetForm}/>); 
+    setModal(
+      'Save changes to profile?',
+      <SaveChangesProfileModal toggleToast={toggleToast} resetForm={resetForm} />
+    );
     openModal();
   };
-
 
   function renderEditButtons() {
     if (!canEdit) return null;
@@ -124,7 +136,9 @@ function Profile({ isEditing = false }) {
             >
               Cancel
             </button>
-            <button className="blue" onClick={showSaveModal}>Save</button>
+            <button className="blue" onClick={showSaveModal}>
+              Save
+            </button>
           </>
         ) : (
           <button className="blue" onClick={toggleEdit}>
@@ -139,12 +153,12 @@ function Profile({ isEditing = false }) {
     <>
       <div className="profile-container">
         <div className="profile-header">
-          <ProfileCircle initials={getInitials(user)} />
+          <ProfileCircle initials={getInitials(profile)} />
           <div className="profile-header-title">
             <h4>
-              {user.firstName} {user.lastName}
+              {profile.firstName} {profile.lastName}
             </h4>
-            <small>{user.role}</small>
+            <small>{profile.role}</small>
           </div>
         </div>
         <hr className="divider" />
