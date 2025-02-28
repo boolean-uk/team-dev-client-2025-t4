@@ -1,0 +1,42 @@
+.studentInfoTop {
+    display: grid;
+    grid-template-columns: auto max-content;
+}
+
+.searchField {
+    width: 400px;
+    padding-top: 1em;
+}
+
+.course_cohort_student {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.greyText {
+    color: #888;
+}
+
+.gridCohortStuff {
+    display: grid;
+    grid-template-columns: 64% 36%;
+}
+
+.innerGridCohortStuff {
+    display: grid;
+    grid-template-rows: auto;
+}
+
+.innerGridCohortStuff > div {
+    border-bottom: 1px solid var(--color-blue5);
+    padding: 1em;
+}
+
+.right-border {
+    border-right: 1px solid var(--color-blue5);
+}
+
+.grid-collapsible-inner {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
