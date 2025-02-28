@@ -104,17 +104,16 @@ function Profile({ isEditing = false }) {
       setTimeout(() => {
         setToastData(null); // Hide the toast after 2 seconds
       }, 3000);
-    }
-    else{
+    } else {
       setToastData({ text: 'Changes discarded', linkText: 'Undo' }); // Show the toast with data
       setTimeout(() => {
         setToastData(null); // Hide the toast after 2 seconds
       }, 3000);
     }
   };
-  
+
   const showModal = () => {
-    setModal('Save changes to profile?', <SaveChangesProfileModal toggleToast={toggleToast}/>); 
+    setModal('Save changes to profile?', <SaveChangesProfileModal toggleToast={toggleToast} />);
 
     // Open the modal!
     openModal();
@@ -137,7 +136,9 @@ function Profile({ isEditing = false }) {
             >
               Cancel
             </button>
-            <button className="blue" onClick={showModal}>Save</button>
+            <button className="blue" onClick={showModal}>
+              Save
+            </button>
           </>
         ) : (
           <button className="blue" onClick={toggleEdit}>
@@ -161,9 +162,14 @@ function Profile({ isEditing = false }) {
           </div>
         </div>
         <hr className="divider" />
-        
-          {/* Components go here! */}
-          <form className="profile-form" onSubmit={(e) => {e.preventDefault()}}>
+
+        {/* Components go here! */}
+        <form
+          className="profile-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <BasicInfoForm
             userData={user}
             userProfileForm={userForm}
