@@ -4,7 +4,7 @@ import Toast from '../../components/toast';
 import './style.css';
 import Button from '../button';
 
-const SaveChangesProfileModal = ({toggleToast}) => {
+const SaveChangesProfileModal = ({toggleToast, resetForm}) => {
   // Use the useModal hook to get the closeModal function so we can close the modal on user interaction
   const { closeModal } = useModal();
 
@@ -13,6 +13,7 @@ const SaveChangesProfileModal = ({toggleToast}) => {
 
   const onNoSave = (e) => {
     closeModal();
+    resetForm();
     toggleToast(false);
   };
 

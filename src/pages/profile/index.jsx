@@ -100,12 +100,12 @@ function Profile({ isEditing = false }) {
     }
   };
 
-  const showModal = () => {
-    setModal('Save changes to profile?', <SaveChangesProfileModal toggleToast={toggleToast} />);
-
-    // Open the modal!
+  
+  const showSaveModal = () => {
+    setModal('Save changes to profile?', <SaveChangesProfileModal toggleToast={toggleToast} resetForm={resetForm}/>); 
     openModal();
   };
+
 
   function renderEditButtons() {
     if (!canEdit) return null;
@@ -124,9 +124,7 @@ function Profile({ isEditing = false }) {
             >
               Cancel
             </button>
-            <button className="blue" onClick={showModal}>
-              Save
-            </button>
+            <button className="blue" onClick={showSaveModal}>Save</button>
           </>
         ) : (
           <button className="blue" onClick={toggleEdit}>
