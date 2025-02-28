@@ -1,0 +1,8 @@
+ .collapsible {
+    border-bottom: 1px solid var(--color-blue5);
+  }
+
+  button {
+    max-width: none !important;
+    text-align: left !important;
+  }
