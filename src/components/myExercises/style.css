@@ -1,0 +1,16 @@
+.stats {
+    display: grid;
+    gap: 6px; 
+    width: 300px; 
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 120px 1fr; 
+    gap: 10px; 
+}
+
+span {
+    color: #64648c;
+    text-align: left; 
+}

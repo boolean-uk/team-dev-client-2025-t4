@@ -1,13 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Post from '../post';
 import { getPosts } from '../../service/apiClient';
+import { AuthContext } from '../../context/auth';
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
 
+  const authContext = useContext(AuthContext);
+
   useEffect(() => {
-    getPosts().then(setPosts);
-  }, []);
+    getPosts()
+    .then(setPosts)
+    .catch((error) => {
+      console.error(error.message);
+      if (error.message === "Unauthorized (Likely expired token)") {
+        authContext.onLogout();
+      }
+    })}, []);
+
 
   return (
     <>

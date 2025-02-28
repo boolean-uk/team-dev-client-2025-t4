@@ -1,0 +1,27 @@
+.cohortListElement {
+    display: grid;
+    grid-template-areas:
+        "cohortIcon cohortDesc"
+        "cohortIcon cohortNumber";
+    grid-template-columns: 68px auto;
+}
+
+.cohortIcon {
+    grid-area: cohortIcon;
+}
+
+.cohortListElementTitle {
+    grid-area: cohortDesc;
+}
+
+.cohortListElementTitle > p {
+    font-size: larger;
+}
+
+.cohortListElementNumber {
+    grid-area: cohortNumber;
+}
+
+.cohortListElementNumber > p {
+    color: #888;
+}
