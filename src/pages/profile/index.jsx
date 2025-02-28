@@ -114,7 +114,7 @@ function Profile({ isEditing = false }) {
   };
   
   const showModal = () => {
-    setModal('Save changes to profile?', <SaveChangesProfileModal toggleToast={toggleToast}/>); 
+    setModal('Save changes to profile?', <SaveChangesProfileModal toggleToast={toggleToast} resetForm={resetForm}/>); 
 
     // Open the modal!
     openModal();
