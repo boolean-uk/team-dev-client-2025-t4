@@ -24,21 +24,42 @@ const Navigation = () => {
     <nav>
       <ul>
         <li>
-          <NavLink to="/">
-            <HomeIcon colour="#000046" />
-            <p>Home</p>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
+            {({ isActive }) => (
+              <>
+                <HomeIcon colour={isActive ? '#000046' : '#64648C'} />
+                <p>Home</p>
+              </>
+            )}
           </NavLink>
         </li>
         <li>
-          <NavLink to={`/profile/${userId}`}>
-            <ProfileIcon />
-            <p>Profile</p>
+          <NavLink
+            to={`/profile/${userId}`}
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
+            {({ isActive }) => (
+              <>
+                <ProfileIcon colour={isActive ? '#000046' : '#64648C'} />
+                <p>Profile</p>
+              </>
+            )}
           </NavLink>
         </li>
         <li>
-          <NavLink to={`/cohort/${userId}`}>
-            <CohortIcon />
-            <p>Cohort</p>
+          <NavLink
+            to={`/cohort/${userId}`}
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
+            {({ isActive }) => (
+              <>
+                <CohortIcon colour={isActive ? '#000046' : '#64648C'} />
+                <p>Cohort</p>
+              </>
+            )}
           </NavLink>
         </li>
       </ul>
