@@ -17,18 +17,6 @@ import { getUser } from '../../service/apiClient';
 import { getInitials } from '../../service/userServices';
 import SaveChangesProfileModal from '../../components/saveChangesProfileModal';
 
-const userObj = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  biography: '',
-  githubUrl: '',
-  password: '',
-  cohortId: '',
-  role: '',
-  id: ''
-};
-
 const defaultUserForm = {
   firstName: '',
   lastName: '',
