@@ -23,6 +23,22 @@ async function getUser(id) {
   return res.data.user;
 }
 
+async function getUsers() {
+  const res = await get('users');
+  if (res.status === 401) {
+    throw new Error('Unauthorized');
+  }
+  return res.data.users;
+}
+
+async function getUsersTest() {
+  const res = await fetch(API_URL + '/users');
+  if (res.status === 401) {
+    throw new Error('Unauthorized (Likely expired token)');
+  }
+  return res.data.users;
+}
+
 async function post(endpoint, data, auth = true) {
   return await request('POST', endpoint, data, auth);
 }
@@ -48,13 +64,21 @@ async function request(method, endpoint, data, auth = true) {
   }
 
   if (auth) {
-    // eslint-disable-next-line dot-notation
     opts.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
   }
 
   const response = await fetch(`${API_URL}/${endpoint}`, opts);
 
+  // In the case of your auth token expiring, this error will be caught in posts and  trigger a LogOut.
+  // This works because refreshing the page will autmatically navigate to "/" where posts
+  // are fetched. (a little messy but it works (?))
+  // Without this, the user would be stuck in a loop of trying to fetch posts and getting a 401.
+  // without beeing able to navigate to Login to refresh their token.
+  if (response.status === 401) {
+    throw new Error('Unauthorized (Likely expired token)');
+  }
+
   return response.json();
 }
 
-export { login, getPosts, getUser, register, createProfile };
+export { login, getPosts, getUser, getUsers, getUsersTest, register, createProfile };
