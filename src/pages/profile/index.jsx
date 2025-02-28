@@ -158,7 +158,7 @@ function Profile({ isEditing = false }) {
             <h4>
               {profile.firstName} {profile.lastName}
             </h4>
-            <small>{profile.role}</small>
+            <small>{user.role}</small>
           </div>
         </div>
         <hr className="divider" />
