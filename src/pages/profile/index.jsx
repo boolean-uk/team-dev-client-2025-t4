@@ -59,11 +59,11 @@ function Profile({ isEditing = false }) {
     if (user.profile) {
       data = {
         ...data,
-        firstName: user.profile?.firstName,
-        lastName: user.profile?.lastName,
-        username: user.profile?.username,
-        githubUrl: user.profile?.githubUrl,
-        mobile: user.profile?.mobile,
+        firstName: user.profile.firstName,
+        lastName: user.profile.lastName,
+        username: user.profile.username,
+        githubUrl: user.profile.githubUrl,
+        mobile: user.profile.mobile,
         biography: user.profile.bio
       };
     }
